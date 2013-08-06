@@ -6,6 +6,8 @@
 ##
 ## For more information: https://github.com/tolo137/PasswordChecker.git
 
+import string
+
 class passwordChecker:
     def __init__(self):
         self.getPassword()
@@ -33,6 +35,7 @@ class passwordChecker:
         self.runSequentialLettersTest()
         self.runSequentialNumbersTest()
         self.runDictionaryWordsTest()
+        print "\nThe password score was:", self.score
         if self.score < 0:
             print "Very bad password"
         elif self.score >= 0:
@@ -43,35 +46,66 @@ class passwordChecker:
             print "Better password"
         elif self.score >= 80:
             print "Awesome password"
-    def runLengthTest():
+    def runLengthTest(self):
+        """ Assesses the length of a password and 
+            increments the score by the length """
+        length = len(self.password)
+        self.changeScore(length)
+    def runUppercaseTest(self):
+        """ Assesses how many uppercase letters
+            are in a password and increments the
+            score by that amount """
+        upperCaseCount = 0
+        for index in self.password:
+            if index in string.uppercase:
+                upperCaseCount += 1
+        self.changeScore(upperCaseCount)
+    def runLowercaseTest(self):
+        """ Assesses how many lowercase letters
+            are in a password and increments the 
+            score by that amount """
+        lowerCaseCount = 0
+        for index in self.password:
+            if index in string.lowercase:
+                lowerCaseCount += 1
+        self.changeScore(lowerCaseCount)
+    def runNumberTest(self):
+        """ Assesses how many numeric characters
+            are in a password and increments the
+            score by that amount """
+        numberCount = 0
+        for index in self.password:
+            if index in string.digits:
+                numberCount += 1
+        self.changeScore(numberCount)
+    def runSpecialCharTest(self):
+        """ Assesses how many special characters
+            are in a password and increments the
+            score by that amount """
+        specialCount = 0
+        for index in self.password:
+            if index in string.punctuation:
+                specialCount += 1
+        self.changeScore(specialCount)
+    def runMiddleCharTest(self):
         pass
-    def runUppercaseTest():
+    def runLettersOnlyTest(self):
         pass
-    def runLowercaseTest():
+    def runNumbersOnlyTest(self):
         pass
-    def runNumberTest():
+    def runRepeatingCharTest(self):
         pass
-    def runSpecialCharTest():
+    def runConsecUpperTest(self):
         pass
-    def runMiddleCharTest():
+    def runConsecLowerTest(self):
         pass
-    def runLettersOnlyTest():
+    def runConsecNumberTest(self):
         pass
-    def runNumbersOnlyTest():
+    def runSequentialLettersTest(self):
         pass
-    def runRepeatingCharTest():
+    def runSequentialNumbersTest(self):
         pass
-    def runConsecUpperTest():
-        pass
-    def runConsecLowerTest():
-        pass
-    def runConsecNumberTest():
-        pass
-    def runSequentialLettersTest():
-        pass
-    def runSequentialNumbersTest():
-        pass
-    def runDictionaryWordsTest():
+    def runDictionaryWordsTest(self):
         pass
 
 if __name__ == "__main__": passwordChecker()
